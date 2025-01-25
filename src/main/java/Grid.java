@@ -41,7 +41,20 @@ public class Grid {
         System.out.println("-------------");
     }
 
-    public void computerMove() {
+    public void computerMoveFirst() {
+        // TODO
+        // Dumb AI
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (grid[i][j] == ' ') {
+                    grid[i][j] = 'o';
+                    return;
+                }
+            }
+        }
+    }
+
+    public void computerMoveSecond() {
         // TODO
         // Dumb AI
         for (int i = 0; i < 3; i++) {

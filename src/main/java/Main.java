@@ -10,13 +10,17 @@ public class Main {
 
         while (true) {
             Grid grid = new Grid();
+            boolean playerFirst = false;
             boolean playersMove = false;
             int row;
             int col;
 
             System.out.println("Would you like to move first? (Y/N)");
             input = scanner.nextLine();
-            if (input.equalsIgnoreCase("Y")) playersMove = true;
+            if (input.equalsIgnoreCase("Y")) {
+                playerFirst = true;
+                playersMove = true;
+            }
 
             while (true) {
                 grid.printGrid();
@@ -54,7 +58,10 @@ public class Main {
 
                 } else {
                     playersMove = true;
-                    grid.computerMove();
+
+                    if (playerFirst) grid.computerMoveFirst();
+                    else grid.computerMoveSecond();
+
                     System.out.println("Computer move.");
                 }
 
