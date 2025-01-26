@@ -38,13 +38,15 @@ public class Main {
             playersMove = true;
         }
 
+        int moveCounter = 0;
+
         while (true) {
             grid.printGrid();
 
             if (playersMove) {
                 System.out.println("Your move.");
 
-                System.out.println("In which row would you like to place a cross? (1/2/3)");
+                System.out.println("In which row would you like to place a " + (playerFirst ? "cross" : "circle") + "? (1/2/3)");
                 input = scanner.nextLine();
                 if (input.equalsIgnoreCase("1")) row = 0;
                 else if (input.equalsIgnoreCase("2")) row = 1;
@@ -54,7 +56,7 @@ public class Main {
                     continue;
                 }
 
-                System.out.println("In which column would you like to place a cross? (1/2/3)");
+                System.out.println("In which column would you like to place a " + (playerFirst ? "cross" : "circle") + "? (1/2/3)");
                 input = scanner.nextLine();
                 if (input.equalsIgnoreCase("1")) col = 0;
                 else if (input.equalsIgnoreCase("2")) col = 1;
@@ -75,18 +77,25 @@ public class Main {
             } else {
                 playersMove = true;
 
-                if (playerFirst) grid.computerMoveFirst();
-                else grid.computerMoveSecond();
+                if (playerFirst) grid.botPlayerMovesFirst();
+                else grid.botComputerMovesFirst();
 
                 System.out.println("Computer move.");
             }
 
             if (grid.checkWin() != ' ') {
-                if (grid.checkWin() == 'x') System.out.println("You win!");
+                if (grid.checkWin() == 'x' && playerFirst || grid.checkWin() == 'o' && !playerFirst)
+                    System.out.println("You win!");
                 else System.out.println("You lose!");
                 grid.printGrid();
                 break;
             }
+
+            if(moveCounter >= 8) {
+                System.out.println("Tie! Nobody wins!");
+                break;
+            }
+            moveCounter++;
         }
     }
 
@@ -98,6 +107,8 @@ public class Main {
         boolean playerOneMove = true;
         int row;
         int col;
+
+        int moveCounter = 0;
 
         while (true) {
             grid.printGrid();
@@ -171,6 +182,12 @@ public class Main {
                 grid.printGrid();
                 break;
             }
+
+            if(moveCounter >= 8) {
+                System.out.println("Tie! Nobody wins!");
+                break;
+            }
+            moveCounter++;
         }
     }
 }
