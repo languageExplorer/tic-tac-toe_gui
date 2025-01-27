@@ -5,6 +5,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
+        // TODO: should implement GUI here
+        GUI.main(args); //Launching GUI
+
         Scanner scanner = new Scanner(System.in);
         String input;
 
